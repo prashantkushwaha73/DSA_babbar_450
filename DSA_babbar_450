@@ -24,3 +24,26 @@ class Solution
 };
 
 ***********************************************************************************
+**** 182 - Inorder Traversal ( 07/07/23 ) ****
+
+class Solution {
+  public:
+  
+    void solve(vector<int>& v,Node* root){
+        if(root==NULL){
+            return;
+        }
+        solve(v,root->left);
+        v.push_back(root->data);
+        solve(v,root->right);
+        
+    }
+    // Function to return a list containing the inorder traversal of the tree.
+    vector<int> inOrder(Node* root) {
+        vector<int> v;
+        solve(v,root);
+        return v;
+    }
+};
+
+**************************************************************************************
