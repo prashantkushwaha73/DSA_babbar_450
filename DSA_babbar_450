@@ -1,0 +1,26 @@
+*************************************************************
+**** 141 - Detect Loop in linked list ( 07/07/23 ) ****
+
+class Solution
+{
+    public:
+    //Function to check if the linked list has a loop.
+    bool detectLoop(Node* head)
+    {
+        Node* temp=head;
+        Node* pemp=head->next;
+        while(pemp){
+            if(temp==pemp){
+                return true;
+            }
+            temp = temp->next;
+            pemp = pemp->next;
+            if(pemp){
+                pemp = pemp->next;
+            }
+        }
+        return false;
+    }
+};
+
+***********************************************************************************
