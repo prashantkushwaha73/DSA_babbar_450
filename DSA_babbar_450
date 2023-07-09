@@ -60,3 +60,34 @@ int minValue(Node* root) {
 }
 
 **********************************************************************
+**** 108 -  Majority Element ( 09/07/23 ) **** 
+
+class Solution{
+  public:
+     // Function to find majority element in the array
+    // a: input array
+    // size: size of input array
+    int majorityElement(int a[], int size)
+    {
+        sort(a,a+size);
+        int count = 0 , value=-1;
+        for(int i=0;i<size;i++){
+            if(a[i]!=value){
+                if(count>(size/2)){
+                    return value;
+                }
+                count=1;
+                value=a[i];
+            }
+            else{
+                count++;
+            }
+        }
+        if(count>(size/2)){
+                    return value;
+                }
+        return -1;
+    }
+};
+
+****************************************************************************************
