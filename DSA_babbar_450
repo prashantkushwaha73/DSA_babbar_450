@@ -143,3 +143,32 @@ class Solution {
 };
 
 ****************************************************************************************************
+**** 247 - Shop in Candy Store ( 20/07/23 ) ****
+
+class Solution
+{
+public:
+    vector<int> candyStore(int candies[], int N, int K)
+    {
+        vector<int> v;
+        for(int i=0;i<N;i++){
+            v.push_back(candies[i]);
+        }
+        sort(v.begin(),v.end());
+        int a = 0, b = v.size()-1,mini=0,maxi=0;
+        while(b>=a){
+            mini += v[a];
+            a++;
+            b = b - K;
+        }
+        a = v.size()-1; b = 0;
+        while(a>=b){
+            maxi += v[a];
+            a--;
+            b = b + K;
+        }
+        return {mini,maxi};
+    }
+};
+
+***********************************************************************************************************
