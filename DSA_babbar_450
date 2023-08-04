@@ -467,3 +467,28 @@ class Solution
 };
 
 ***********************************************************************************************
+**** Find Missing And Repeating ( 04/08/23 ) ****
+
+class Solution{
+public:
+    vector<int> findTwoElement(vector<int> arr, int n) {
+        vector<bool> v(n+1,false);
+        vector<int> ans;
+        for(int i=0;i<arr.size();i++){
+            if(v[arr[i]]){
+                ans.push_back(arr[i]);
+            }
+            else{
+                v[arr[i]] = true;
+            }
+        }
+        for(int i=1;i<n+1;i++){
+            if(v[i] == false){
+                ans.push_back(i);
+            }
+        }
+        return ans;
+    }
+};
+
+*******************************************************************************************
