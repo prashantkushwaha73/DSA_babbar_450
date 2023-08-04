@@ -492,3 +492,29 @@ public:
 };
 
 *******************************************************************************************
+**** Populate Inorder Successor for all nodes ( 04/08/23 ) ****
+
+class Solution
+{
+public:
+
+   void solve(Node* root,vector<Node*>& v){
+       if(root==NULL){
+           return;
+       }
+       solve(root->left,v);
+       v.push_back(root);
+       solve(root->right,v);
+   }
+
+    void populateNext(Node *root)
+    {
+       vector<Node*> v;
+       solve(root,v);
+      for(int i=0;i<v.size()-1;i++){
+          v[i]->next = v[i+1];
+      }
+    }
+};
+
+*******************************************************************************************
