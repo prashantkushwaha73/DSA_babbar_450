@@ -598,3 +598,39 @@ class twoStacks
 };
 
 **********************************************************************************************************
+**** 20 - Find all possible paths from top to bottom ( 11/08/23 ) ****
+
+class Solution
+{
+public:
+   
+    void solve( vector<vector<int>>& ans,vector<int> store,int x,int y,int n,int m, vector<vector<int>> &grid){
+        store.push_back(grid[x][y]);
+        if(x==n-1 && y==m-1){
+            ans.push_back(store);
+            return;
+        }
+        
+         ////// down
+      if(x+1 < n){
+          solve(ans,store,x+1,y,n,m,grid);
+      }
+        
+      /////  right
+      if(y+1 < m){
+          solve(ans,store,x,y+1,n,m,grid);
+      }
+      
+     
+    }
+    
+    vector<vector<int>> findAllPossiblePaths(int n, int m, vector<vector<int>> &grid)
+    {
+        vector<vector<int>> ans;
+        vector<int> store;
+        solve(ans,store,0,0,n,m,grid);
+        return ans;
+    }
+};
+
+******************************************************************************
