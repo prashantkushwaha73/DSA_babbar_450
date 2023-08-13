@@ -724,3 +724,48 @@ bool isDeadEnd(Node *root)
     }
     return ans;
 }
+
+****************************************************************************************
+**** 23 - 172 - Segregate even and odd nodes in a Link List ( 13/08/23 ) ****
+
+class Solution{
+public:
+    Node* divide(int N, Node *head){
+        vector<int> v(N);
+        int even = 0, odd = 0;
+        Node* temp = head;
+        while(temp){
+            if(temp->data%2){
+                odd++;
+            }
+            else{
+                even++;
+            }
+            temp = temp->next;
+        }
+        if(even==0 || odd==0){
+            return head;
+        }
+        int ei = 0,oi = even;
+        temp = head;
+        while(temp){
+            if(temp->data%2){
+                v[oi] = temp->data;
+                oi++;
+            }
+            else{
+                v[ei] = temp->data;
+                ei++;
+            }
+            temp = temp->next;
+        }
+        temp = head;
+        for(int i=0;i<v.size();i++){
+           temp->data = v[i];
+           temp = temp->next;
+        }
+        return head;
+    }
+};
+
+****************************************************************************
