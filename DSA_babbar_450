@@ -794,3 +794,32 @@ public:
 };
 
 ***************************************************************************
+**** 25 - 67 - Split the binary string into substrings with equal number of 0s and 1s ( 18/08/23 ) ****
+
+class Solution {
+public:
+    int maxSubStr(string str){
+        int zeros = 0 , ones = 0 ,ans = 0,count = 0;
+        for(int i=0;i<str.size();i++){
+            if(str[i] == '0'){
+                zeros++;
+            }
+            else{
+                ones++;
+            }
+            if(zeros == ones){
+                ans++;
+                count+=zeros;
+                count+=ones;
+                zeros = 0;
+                ones = 0;
+            }
+        }
+        if(count != str.size()){
+            return -1;
+        }
+        return ans;
+    }
+};
+
+***********************************************************************************
