@@ -878,7 +878,7 @@ void heapSort(int arr[], int N)
 
 int binarySearch(int arr[], int l, int r, int x)
 {
-    while (l <= r) {
+    while (l <= r) {  
         int m = l + (r - l) / 2;
  
         // Check if x is present at mid
@@ -935,7 +935,7 @@ bool findPair(int arr[], int size, int n){
 }
 
 ***********************************************************************************
-**** 26 - 187 - Top View of Binary Tree ( 21/08/23 ) **** 
+**** 27 - 187 - Top View of Binary Tree ( 21/08/23 ) **** 
 
 class Solution
 {
@@ -975,3 +975,23 @@ class Solution
 };
 
 ***************************************************************************************
+**** 28 - 57 - Palindrome String ( 21/08/23 ) ****
+
+class Solution{
+public:	
+	
+	
+	int isPalindrome(string s)
+	{
+	    int i = 0, j=s.size()-1;
+	    while(i<=j){
+	        if(s[i] != s[j]){
+	            return 0;
+	        }
+	        i++; j--;
+	    }
+	    return 1;
+	}
+};
+
+******************************************************************************************
