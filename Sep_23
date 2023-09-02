@@ -16,3 +16,78 @@ public:
 };
 
 *************************************************************************
+**** 2 - 275 - Rat in a Maze Problem - I ( 02/09/23 ) ****
+
+// User function template for C++
+
+class Solution{
+    private:
+    bool can(int newx,int newy,int n,vector<vector<int>>& track,vector<vector<int>>& m){
+        if((newx>=0 && newx<n) && (newy>=0 && newy<n) && track[newx][newy]==0 && m[newx][newy]==1){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    
+    void solve(vector<vector<int>>& m, int n, vector<vector<int>>& track,string store,int x,int y,vector<string>& ans){
+        if(x==n-1 && y==n-1){
+            ans.push_back(store);
+            return;
+        }
+        track[x][y]=1;
+        //left
+        int newx=x,newy=y-1;
+        if(can(newx,newy,n,track,m)){
+            store.push_back('L');
+            solve(m,n,track,store,newx,newy,ans);
+            store.pop_back();
+        }
+        //right
+        newx=x,newy=y+1;
+        if(can(newx,newy,n,track,m)){
+            store.push_back('R');
+            solve(m,n,track,store,newx,newy,ans);
+            store.pop_back();
+        }
+        //up
+        newx=x-1,newy=y;
+        if(can(newx,newy,n,track,m)){
+            store.push_back('U');
+            solve(m,n,track,store,newx,newy,ans);
+            store.pop_back();
+        }
+        //down
+        newx=x+1,newy=y;
+        if(can(newx,newy,n,track,m)){
+            store.push_back('D');
+            solve(m,n,track,store,newx,newy,ans);
+            store.pop_back();
+        }
+        track[x][y]=0;
+        
+    }
+    public:
+    vector<string> findPath(vector<vector<int>> &m, int n) {
+        // Your code goes here
+        vector<vector<int>> track=m;
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+                track[i][j]=0;
+            }
+        }
+        string store="";
+        int x=0,y=0;
+        vector<string> ans;
+        if(m[0][0]==0){
+            return ans;
+        }
+        solve(m,n,track,store,x,y,ans);
+        sort(ans.begin(),ans.end());
+        return ans;
+        
+    }
+};
+
+***************************************************************************************
