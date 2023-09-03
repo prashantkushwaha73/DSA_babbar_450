@@ -91,3 +91,36 @@ class Solution{
 };
 
 ***************************************************************************************
+**** 3 - 188 - Bottom View of Binary Tree ( 03/09/23 ) ****
+
+class Solution {
+  public:
+    vector <int> bottomView(Node *root) {
+         map<int,int> nodes;
+        queue<pair<Node*,int>> q;
+        q.push(make_pair(root,0));
+        vector<int> ans;
+        if(root==NULL){
+            return ans;
+        }
+        while(!q.empty()){
+           pair<Node*,int> temp=q.front();
+           q.pop();
+           Node* node=temp.first;
+           int hd=temp.second;
+           nodes[hd]=node->data;
+           if(node->left){
+               q.push(make_pair(node->left,hd-1));
+           }
+           if(node->right){
+               q.push(make_pair(node->right,hd+1));
+           }
+        }
+        for(auto i:nodes){
+            ans.push_back(i.second);
+        }
+        return ans;
+    }
+};
+
+*******************************************************************************************
