@@ -233,3 +233,48 @@ class Solution{
 };
 
 *********************************************************************************************************************
+**** 6 - 130 - Allocate minimum number of pages ( 05/09/23 ) ****
+
+class Solution 
+{
+    public:
+    //Function to find minimum number of pages.
+    bool check(int mid,int a[],int n,int m){
+        int c=0;
+        int sum=0;
+        for(int i=0;i<n;i++){
+            if(sum+a[i]<=mid){
+                sum+=a[i];
+            }
+            else{
+                c++;
+                sum=a[i];
+            }
+        }
+        if(sum>0) c++;
+        if(c>m) return true;
+        return false;
+    }
+    int findPages(int A[], int N, int M) 
+    {
+        //code here
+        // sort(A,A+N);
+        if(M>N) return -1;
+        int l=0;
+        int h=0;
+        for(int i=0;i<N;i++){
+            l=max(l,A[i]);
+            h+=A[i];
+        }
+        while(l<=h){
+            int mid=(l+h)/2;
+            if(check(mid,A,N,M)){
+                l=mid+1;
+            }
+            else h=mid-1;
+        }
+        return l;
+    }
+};
+
+*****************************************************************************
