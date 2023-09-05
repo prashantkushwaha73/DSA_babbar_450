@@ -150,3 +150,86 @@ class Solution
 };
 
 ********************************************************************************************
+**** 5 - 252 - Maximum product subset of an array ( 05/09/23 ) ****
+
+class Solution{
+    public:
+    
+    void solve(long long int& ans,int b){
+        ans = (ans*b)%1000000007;
+    }
+    
+    long long int findMaxProduct(vector<int>&a, int n){
+        sort(a.begin(),a.end());
+        int neg = 0;
+        int negi ;
+        int zeros = 0;
+        int zeroi ;
+        int posi = 0;
+        for(int i=0;i<a.size();i++){
+            if(a[i] < 0){
+                neg++;
+                negi = i;
+            }
+            else if(a[i] > 0){
+                posi++;
+            }
+            else{
+                zeros++;
+                zeroi = i;
+            }
+        }
+        long long int ans = 1;
+        if(posi == 0){
+            if(neg <= 1 && zeros){
+                return 0;
+            }
+            if(neg <= 1 && zeros == 0){
+                return a[0];
+            }
+            if(neg%2){
+                for(int i=0;i<negi;i++){
+                    solve(ans,a[i]);
+                }
+            }
+            else{
+                for(int i=0;i<=negi;i++){
+                    solve(ans,a[i]);
+                }
+            }
+        }
+        else{
+            if(zeros){
+                for(int i=zeroi+1;i<a.size();i++){
+                    solve(ans,a[i]);
+                }
+            }
+            else if(neg){
+                for(int i=negi+1;i<a.size();i++){
+                    solve(ans,a[i]);
+                }
+            }
+            else{
+                for(int i=0;i<a.size();i++){
+                    solve(ans,a[i]);
+                }
+            }
+            
+            if(neg > 1){
+                  if(neg%2){
+                for(int i=0;i<negi;i++){
+                    solve(ans,a[i]);
+                }
+            }
+            else{
+                for(int i=0;i<=negi;i++){
+                    solve(ans,a[i]);
+                }
+            }
+            }
+        }
+        return ans;
+    }
+};
+
+*********************************************************************************************************************
