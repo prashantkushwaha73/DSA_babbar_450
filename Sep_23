@@ -278,3 +278,35 @@ class Solution
 };
 
 *****************************************************************************
+**** 7 - 76 - Count the Reversals ( 06/09/23 ) ****
+
+int countRev (string s)
+{
+    int ans = 0;
+    stack<char> st;
+    for(int i=0;i<s.size();i++){
+        if(st.empty()){
+            if(s[i] == '{'){
+                st.push('{');
+            }
+            else{
+                st.push('{');
+                ans ++;
+            }
+        }
+        else{
+            if(s[i] == '{'){
+                st.push('{');
+            }
+            else{
+                st.pop();
+            }
+        }
+    }
+    if(st.size()%2){
+        return -1;
+    }
+    return ans+(st.size()/2);
+}
+
+************************************************************************************
