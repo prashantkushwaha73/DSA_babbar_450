@@ -310,3 +310,25 @@ int countRev (string s)
 }
 
 ************************************************************************************
+**** 8 - 30 - Count More than n/k Occurences ( 08/09/23 ) ****
+
+class Solution
+{
+    public:
+    //Function to find all elements in array that appear more than n/k times.
+    int countOccurence(int arr[], int n, int k) {
+        unordered_map<int,int> m;
+        for(int i=0;i<n;i++){
+            m[arr[i]]++;
+        }
+        int ans = 0;
+        for(auto i:m){
+            if(i.second > n/k){
+                ans++;
+            }
+        }
+        return ans;
+    }
+};
+
+**************************************************************************************
