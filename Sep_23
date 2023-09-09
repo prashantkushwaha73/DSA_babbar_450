@@ -332,7 +332,7 @@ class Solution
 };
 
 **************************************************************************************
-**** 9 -174 - First non-repeating character in a stream ( 08/09/23 ) ****
+**** 9 - 174 - First non-repeating character in a stream ( 08/09/23 ) ****
 
 class Solution {
 	public:
@@ -363,3 +363,23 @@ class Solution {
 };
 
 ********************************************************************************************
+**** 10 - 154 - Check If Circular Linked List ( 09/09/23 ) ****
+
+bool isCircular(Node *head)
+{
+   Node* first = head;
+   Node* second = head->next;
+   while(second){
+       first=first->next;
+       second=second->next;
+       if(second){
+           second = second->next;
+       }
+       if(first == second){
+           return true;
+       }
+   }
+   return false;
+}
+
+*******************************************************************************************
