@@ -383,3 +383,44 @@ bool isCircular(Node *head)
 }
 
 *******************************************************************************************
+**** 11 - 214 - Insert a node in a BST ( 11/09/23 ) ****
+
+class Solution
+{
+    public:
+    
+    void solve(Node* node , int data){
+        if(node->data == data){
+            return;
+        }
+        if(data > node->data){
+            if(node->right){
+                solve(node->right,data);
+                return;
+            }
+            else{
+                node->right = new Node(data);
+                return;
+            }
+        }
+        else{
+            if(node->left){
+                solve(node->left,data);
+                return;
+            }
+            else{
+                node->left = new Node(data);
+                return;
+            }
+        }
+        
+    }
+        
+        Node* insert(Node* node, int data) {
+            solve(node,data);
+            return node;
+    }
+
+};
+
+**********************************************************************************
