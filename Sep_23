@@ -639,3 +639,44 @@ public:
 };
 
 ****************************************************************************************
+**** Circular tour ( 30/09/23 ) ****
+
+class Solution{
+  public:
+  
+    int tour(petrolPump p[],int n)
+    {
+        int count = 0;
+       int i=0,j=0,tpetrol=0;
+       bool flag = false;
+      
+       while(count<n){
+         if(tpetrol+p[j].petrol >= p[j].distance){
+             tpetrol+=p[j].petrol;
+             tpetrol-=p[j].distance;
+             j = (j+1)%n;
+             if(j==i){
+                 return i;
+             }
+         }
+         else{
+             if(i==j){
+                 i = (i+1)%n;
+                 j = i;
+                 tpetrol = 0;
+                 count++;
+             }
+             else{
+                 tpetrol+=p[i].distance;
+                 tpetrol-=p[i].petrol;
+                 i = (i+1)%n;
+                 count++;
+             }
+         }
+    
+       }
+       return -1;
+    }
+};
+
+***********************************************************************************************
