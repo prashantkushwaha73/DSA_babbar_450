@@ -639,7 +639,7 @@ public:
 };
 
 ****************************************************************************************
-**** Circular tour ( 30/09/23 ) ****
+**** 17 - 325 - Circular tour ( 30/09/23 ) ****
 
 class Solution{
   public:
@@ -680,3 +680,44 @@ class Solution{
 };
 
 ***********************************************************************************************
+**** 18 - 374 - Minimum Spanning Tree ( 30/09/23 ) ****
+
+class Solution
+{
+	public:
+	//Function to find sum of weights of edges of the Minimum Spanning Tree.
+    int spanningTree(int V, vector<vector<int>> m[])
+    {
+        vector<int> key(V,INT_MAX);
+        vector<bool> mst(V,false);
+        vector<int> parent(V,-1);
+        key[0]=0;
+        while(1){
+            int small = INT_MAX;
+            int ind;
+            for(int i=0;i<key.size();i++){
+                if(key[i]<small && mst[i]==false){
+                    small = key[i];
+                    ind = i;
+                }
+            }
+            if(small == INT_MAX){
+                break;
+            }
+            mst[ind]=true;
+            for(int i=0;i<m[ind].size();i++){
+                if(key[m[ind][i][0]] > m[ind][i][1] && mst[m[ind][i][0]] == false){
+                    key[m[ind][i][0]] = m[ind][i][1];
+                    parent[m[ind][i][0]] = ind;
+                }
+            }
+        }
+        int ans = 0;
+        for(int i=0;i<key.size();i++){
+            ans+=key[i];
+        }
+        return ans;
+    }
+};
+
+**************************************************************************************
