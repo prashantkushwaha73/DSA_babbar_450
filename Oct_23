@@ -1,0 +1,50 @@
+******************************************************************************************
+**** 1 - 145 -  Remove duplicates from an unsorted linked list ( 01/10/23 ) ****
+
+/*
+The structure of linked list is the following
+
+struct Node {
+  int data;
+  struct Node *next;
+  Node(int x) {
+    data = x;
+    next = NULL;
+  }
+};
+*/
+
+
+class Solution
+{
+    public:
+    //Function to remove duplicates from unsorted linked list.
+    Node * removeDuplicates( Node *head) 
+    {
+     unordered_map<int,bool> m;
+     Node* first = head;
+     m[head->data]=true;
+     if(head->next){
+         Node* second = head->next;
+         while(second){
+             if(m[second->data]){
+                 first->next = second->next;
+                 second = second -> next;
+             }
+             else{
+                 m[second->data]=true;
+                 first = second ;
+                 second = second -> next;
+             }
+         }
+         return head;
+     }
+     else{
+         return first;
+     }
+     return NULL;
+    }
+};
+
+
+********************************************************************************************************************
