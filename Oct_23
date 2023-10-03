@@ -77,3 +77,27 @@ class Solution{
 };
 
 ****************************************************************************
+**** 3 - 33 - Remove Consecutive Characters ( 03/10/23 ) ****
+
+class Solution{
+    public:
+    string removeConsecutiveCharacter(string s)
+    {
+        stack<char> st;
+        st.push(s[0]);
+        for(int i=1;i<s.size();i++){
+            if(st.top()!=s[i]){
+                st.push(s[i]);
+            }
+        }
+        string ans;
+        while(!st.empty()){
+            ans.push_back(st.top());
+            st.pop();
+        }
+        reverse(ans.begin(),ans.end());
+        return ans;
+    }
+};
+
+********************************************************************************
