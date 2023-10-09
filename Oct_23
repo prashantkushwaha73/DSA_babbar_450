@@ -133,3 +133,40 @@ class Solution{
 };
 
 ********************************************************************************************
+**** 5 - 196 - Construct Tree from Inorder & Preorder ( 09/10/23 ) ****
+
+class Solution{
+    public:
+    
+    int posi(int in[],int s,int e,int v){
+        for(int i=s;i<=e;i++){
+            if(in[i]==v){
+                return i;
+            }
+        }
+    }
+    
+    Node* solve(int in[],int pre[],int& i,int s,int e,int n){
+        if(i>=n){
+            return NULL;
+        }
+        Node* temp = new Node(pre[i]);
+        int j = posi(in,s,e,pre[i]);
+        i++;
+        if(s<=j-1){
+        temp->left = solve(in,pre,i,s,j-1,n);
+        }
+        if(j+1<=e){
+            temp->right = solve(in,pre,i,j+1,e,n);
+         }
+         return temp;
+    }
+    
+    Node* buildTree(int in[],int pre[], int n)
+    {
+        int i = 0;
+        return solve(in,pre,i,0,n-1,n);
+    }
+};
+
+*********************************************************************************************
