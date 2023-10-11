@@ -193,3 +193,24 @@ struct Node *sortDoubly(struct Node *head)
 }
 
 *************************************************************************************************
+**** 7 - 52 - Kth element in Matrix ( 11/10/23 ) ****
+
+int kthSmallest(int mat[MAX][MAX], int n, int k)
+{
+   priority_queue<pair<int,pair<int,int>>,vector<pair<int,pair<int,int>>>,greater<pair<int,pair<int,int>>>> pq;
+   for(int i=0;i<n;i++){
+       pq.push({mat[i][0],{i,0}});
+   }
+   pair<int,pair<int,int>> p;
+   while(k){
+       p = pq.top();
+       pq.pop();
+       k--;
+       if(p.second.second+1 < n){
+           pq.push({mat[p.second.first][p.second.second+1],{p.second.first,p.second.second+1}});
+       }
+   }
+   return p.first;
+}
+
+****************************************************************************************************************
