@@ -214,3 +214,52 @@ int kthSmallest(int mat[MAX][MAX], int n, int k)
 }
 
 ****************************************************************************************************************
+**** 8 - 243 - Choose and Swap ( 11/10/23 ) ****
+
+class Solution{
+public:
+    string chooseandswap(string a){
+        unordered_map<char,bool> check;
+        char ans1,ans2;
+        map<char,bool> m;
+        for(int i=0;i<a.size();i++){
+            m[a[i]] = true;
+        }
+        int p = 0;
+        int count = m.size();
+        bool flag = false;
+        for(auto i:m){
+            flag = false;
+            while(check[a[p]]){
+                p++;
+                if(p>=a.size()){
+                    return a;
+                }
+            }
+            while(a[p]==i.first){
+                flag = true;
+                p++;
+                if(p>=a.size()){
+                    return a;
+                }
+            }
+            
+            if(flag == false){
+                ans1 = i.first; ans2 = a[p];
+                break;
+            }
+            check[i.first] = true;
+        }
+        for(int i=0;i<a.size();i++){
+            if(a[i]==ans1){
+                a[i]=ans2;
+            }
+            else if(a[i] == ans2){
+                a[i] = ans1;
+            }
+        }
+        return a;
+    }
+};
+
+***********************************************************************************************************
