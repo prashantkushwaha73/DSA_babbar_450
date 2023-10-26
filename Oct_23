@@ -292,3 +292,42 @@ class Solution {
 };
 
 ************************************************************************************************************
+**** 10 - 289 - Path of greater than equal to k length ( 27/10/23 ) ****
+
+class Solution {
+public:
+
+    bool solve(int n,unordered_map<int,vector<pair<int,int>>>& edges,vector<bool>& visited,int k,int count){
+      if(count >= k){
+          return true;
+      }
+      for(int i=0;i<edges[n].size();i++){
+          if(visited[edges[n][i].first]==false){
+              visited[edges[n][i].first] = true;
+              if( solve(edges[n][i].first,edges,visited,k,count+edges[n][i].second)){
+                  return true;
+              }
+             visited[edges[n][i].first] = false;
+          }
+      }
+      return false;
+    }
+
+    bool pathMoreThanK(int V, int E, int k, int *a) 
+    { 
+       unordered_map<int,vector<pair<int,int>>> edges;
+       for(int i=0;i<E*3;i+=3){
+           edges[a[i]].push_back({a[i+1],a[i+2]});
+           edges[a[i+1]].push_back({a[i],a[i+2]});
+       }
+       vector<bool> visited(V,false);
+              visited[0] = true;
+              if(solve(0,edges,visited,k,0)){
+                  return true;
+              }
+             
+       return false;
+    } 
+};
+
+***********************************************************************************************
