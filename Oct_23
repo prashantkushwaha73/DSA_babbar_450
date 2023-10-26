@@ -263,3 +263,32 @@ public:
 };
 
 ***********************************************************************************************************
+**** 9 - 314 - Expression contains redundant bracket or not ( 26/10/23 ) ****
+
+class Solution {
+  public:
+    int checkRedundancy(string s) {
+        stack<pair<char,bool>> st;
+        for(int i=0;i<s.size();i++){
+            if(s[i] == '('){
+                st.push({s[i],false});
+            }
+            else if(s[i] =='+' || s[i] == '-' || s[i] == '*' || s[i] == '/'){
+                if(!st.empty()){
+                    st.top().second = true;
+                }
+            }
+            else if(s[i] == ')'){
+                if(st.top().second){
+                    st.pop();
+                }
+                else{
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+};
+
+************************************************************************************************************
