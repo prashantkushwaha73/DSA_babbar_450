@@ -72,3 +72,33 @@ class Solution
 };
 
 *******************************************************************************************************
+**** 3 - 311 - Overlapping Intervals ( 05/11/23 ) ****
+
+class Solution {
+public:
+    vector<vector<int>> overlappedInterval(vector<vector<int>>& intervals) {
+         priority_queue<vector<int>,vector<vector<int>>,greater<vector<int>>> pq;
+         for(int i=0;i<intervals.size();i++){
+             pq.push(intervals[i]);
+         }
+         vector<vector<int>> ans;
+         vector<int> v;
+         ans.push_back(pq.top());
+         pq.pop();
+         while(!pq.empty()){
+             v = pq.top();
+             pq.pop();
+             if(v[0] <= ans[ans.size()-1][1]){
+                 if(v[1] > ans[ans.size()-1][1]){
+                     ans[ans.size()-1][1] = v[1];
+                 }
+             }
+             else{
+                 ans.push_back(v);
+             }
+         }
+        return ans;
+    }
+};
+
+***************************************************************************************************
