@@ -1,5 +1,5 @@
 *********************************************************************************************************************************
-**** Min Number of Flips ( 02/11/23 ) ****
+**** 1 -  Min Number of Flips ( 02/11/23 ) ****
 
 int solve0(string S){
     bool flag = false;
@@ -48,3 +48,27 @@ int minFlips (string S)
 }
 
 ************************************************************************************************************
+**** 2 - Reverse a linked list ( 05/11/23 ) ****
+
+class Solution
+{
+    public:
+    //Function to reverse a linked list.
+    struct Node* reverseList(struct Node *head)
+    {
+        Node* first = head;
+        Node* second = head->next;
+        first->next = NULL;
+        Node* posi;
+        while(second){
+           posi = second -> next;
+           second -> next = first;
+           first = second;
+           second = posi;
+        }
+        return first;
+    }
+    
+};
+
+*******************************************************************************************************
