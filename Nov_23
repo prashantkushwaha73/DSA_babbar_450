@@ -124,3 +124,47 @@ string isSubset(int a1[], int a2[], int n, int m) {
 }
 
 ***************************************************************************************************************
+**** 5 - 169 - Merge K sorted linked lists ( 09/11/23 ) ****
+
+class Solution{
+  public:
+    //Function to merge K sorted linked list.
+    class Compare {
+public:
+    bool operator()(Node* below, Node* above)
+    {
+        if (below->data > above->data) {
+            return true;
+        }
+        return false;
+    }
+};
+
+    Node * mergeKLists(Node *arr[], int K)
+    {
+           priority_queue<Node*,vector<Node*>,Compare> pq;
+           for(int i=0;i<K;i++){
+               pq.push(arr[i]);
+           }
+           Node* temp = pq.top();
+           pq.pop();
+           Node* ans = temp;
+           Node* pemp = ans;
+           if(temp->next){
+               pq.push(temp->next);
+           }
+           while(!pq.empty()){
+               temp = pq.top();
+               pq.pop();
+               pemp->next = temp;
+               pemp = temp;
+               if(temp->next){
+                   pq.push(temp->next);
+               }
+           }
+           pemp->next = NULL;
+           return ans;
+    }
+};
+
+***************************************************************************************************
