@@ -168,7 +168,7 @@ public:
 };
 
 ***************************************************************************************************
-**** Intersection Point in Y Shaped Linked Lists ( 25/11/23 ) ****
+**** 6 - 150 -  Intersection Point in Y Shaped Linked Lists ( 25/11/23 ) ****
 
 int intersectPoint(Node* head1, Node* head2)
 {
