@@ -168,3 +168,39 @@ public:
 };
 
 ***************************************************************************************************
+**** Intersection Point in Y Shaped Linked Lists ( 25/11/23 ) ****
+
+int intersectPoint(Node* head1, Node* head2)
+{
+    int size1 = 0 , size2 = 0;
+    Node* temp = head1;
+    while(temp){
+        size1++;
+        temp = temp->next;
+    }
+    temp = head2;
+    while(temp){
+        size2++;
+        temp = temp->next;
+    }
+    if(size1 > size2){
+        for(int i=0;i<(size1-size2);i++){
+            head1 = head1->next;
+        }
+    }
+    else{
+        for(int i=0;i<(size2-size1);i++){
+            head2 = head2->next;
+        }
+    }
+    while(head1 && head2){
+        if(head1==head2){
+            return head1->data;
+        }
+        head1 = head1->next;
+        head2 = head2->next;
+    }
+    return -1;
+}
+
+****************************************************************************************************
