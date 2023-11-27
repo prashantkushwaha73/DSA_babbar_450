@@ -204,3 +204,29 @@ int intersectPoint(Node* head1, Node* head2)
 }
 
 ****************************************************************************************************
+**** 7 - 173 - Nth node from end of linked list ( 27/11/23 ) ****
+
+class Solution{
+public:
+    int getNthFromLast(Node *head, int n)
+    {
+           int count = 0;
+           Node* temp = head;
+           while(temp){
+               count++;
+               temp=temp->next;
+           }
+           n = count-n;
+           if(n < 0 || n > count){
+               return -1;
+           }
+           temp = head;
+           while(n){
+               n--;
+               temp=temp->next;
+           }
+           return temp->data;
+    }
+};
+
+***************************************************************************************
