@@ -230,3 +230,37 @@ public:
 };
 
 ***************************************************************************************
+**** 8 - 96 - Transform String ( 28/11/23 ) ****
+
+class Solution
+{
+    public:
+    int transform (string A, string B)
+    {
+        unordered_map<char,int> m;
+        for(int i=0;i<A.size();i++){
+            m[A[i]]++;
+        }
+        for(int j=0;j<B.size();j++){
+            m[B[j]]--;
+        }
+        for(auto i:m){
+            if(i.second!=0){
+                return -1;
+            }
+        }
+        int i = A.size(),j=B.size(),count=0;
+        while(i>=0){
+            if(A[i]==B[j]){
+                i--; j--;
+            }
+            else{
+                count++;
+                i--;
+            }
+        }
+        return count;
+    }
+};
+
+************************************************************************************************
