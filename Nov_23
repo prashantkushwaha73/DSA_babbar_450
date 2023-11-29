@@ -264,3 +264,32 @@ class Solution
 };
 
 ************************************************************************************************
+**** Merge k Sorted Arrays ( 29/11/23 ) ****
+
+class Solution
+{
+    public:
+    //Function to merge k sorted arrays.
+    vector<int> mergeKArrays(vector<vector<int>> arr, int K)
+    {
+        priority_queue<pair<int,pair<int,int>>,vector<pair<int,pair<int,int>>>,greater<pair<int,pair<int,int>>>> pq;
+        vector<int> ans;
+        for(int i=0;i<arr.size();i++){
+            pq.push({arr[i][0],{i,0}});
+        }
+        int v,r,c;
+        while(!pq.empty()){
+            v = pq.top().first;
+            r = pq.top().second.first;
+            c = pq.top().second.second;
+            pq.pop();
+            ans.push_back(v);
+            if(c+1 < arr[r].size()){
+                pq.push({arr[r][c+1],{r,c+1}});
+            }
+        }
+        return ans;
+    }
+};
+
+*************************************************************************************************************
