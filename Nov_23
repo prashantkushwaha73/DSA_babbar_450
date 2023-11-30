@@ -330,3 +330,45 @@ public:
 };
 
 *************************************************************************************
+**** 11 - Detect cycle in a directed graph ( 30/11/23 ) ****
+
+class Solution {
+private:
+        void solve(vector<int> adj[],vector<bool>& visited,vector<bool>& call,queue<int>& q,bool& ans){
+            while(!q.empty()){
+                int temp=q.front();
+                q.pop();
+                call[temp]=true;
+                for(int j=0;j<adj[temp].size();j++){
+                    
+                    if(visited[adj[temp][j]]==false){
+                        q.push(adj[temp][j]);
+                        visited[adj[temp][j]]=true;
+                        solve(adj,visited,call,q,ans);
+                    }
+                    else if(call[adj[temp][j]]==true){
+                        ans=true;
+                    }
+                }
+                call[temp]=false;
+            }
+        }
+  public:
+    // Function to detect cycle in a directed graph.
+    bool isCyclic(int V, vector<int> adj[]) {
+        bool ans=false;
+        vector<bool> visited(V,false);
+        vector<bool> call(V,false);
+        queue<int> q;
+        for(int i=0;i<V;i++){
+            if(visited[i]==false){
+                q.push(i);
+                visited[i]=true;
+                solve(adj,visited,call,q,ans);
+            }
+        }
+        return ans;
+    }
+};
+
+**************************************************************************************************************
