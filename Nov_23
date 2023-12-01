@@ -330,7 +330,7 @@ public:
 };
 
 *************************************************************************************
-**** 11 - Detect cycle in a directed graph ( 30/11/23 ) ****
+**** 11 - 359 - Detect cycle in a directed graph ( 30/11/23 ) ****
 
 class Solution {
 private:
