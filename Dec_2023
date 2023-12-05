@@ -71,3 +71,39 @@ class Solution
 };
 
 ***********************************************************************************************************
+**** 4 - 218 - Check for BST ( 05/12/23 ) ****
+
+class Solution
+{
+    public:
+      
+    bool solve(Node* root,pair<int,int> p){
+        
+        if(root->data<=p.first || root->data>=p.second){
+            return false;
+        }
+        bool l=true,r=true;
+        if(root->left){
+            l = solve(root->left,{p.first,root->data});
+        }
+        if(root->right){
+            r = solve(root->right,{root->data,p.second});
+        }
+        return l&&r;
+    }
+      
+    bool isBST(Node* root) 
+    {
+       if(root==NULL) return true;
+           bool l=true,r=true;
+           if(root->left){
+               l = solve(root->left,{INT_MIN,root->data});
+           }
+           if(root->right){
+               r = solve(root->right,{root->data,INT_MAX});
+           }
+           return l&&r;
+    }
+};
+
+***************************************************************************************************************
