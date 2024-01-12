@@ -1,0 +1,25 @@
+**********************************************************************************************
+**** 1 - 48 - Sorted matrix ( 12/01/24 ) ****
+
+class Solution {
+  public:
+    vector<vector<int>> sortedMatrix(int N, vector<vector<int>> mat) {
+        vector<int> v;
+        for(int i=0;i<N;i++){
+            for(int j=0;j<N;j++){
+                v.push_back(mat[i][j]);
+            }
+        }
+        sort(v.begin(),v.end());
+        int posi = 0;
+        for(int i=0;i<N;i++){
+            for(int j=0;j<N;j++){
+                mat[i][j] = v[posi];
+                posi++;
+            }
+        }
+        return mat;
+    }
+};
+
+**********************************************************************************************************
