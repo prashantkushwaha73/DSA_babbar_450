@@ -69,3 +69,30 @@ class Solution{
 };
 
 **********************************************************************************************************************
+**** 3 - 118 -  Minimum Swaps to Sort ( 17/01/24 ) ****
+
+class Solution 
+{
+    public:
+    //Function to find the minimum number of swaps required to sort the array. 
+	int minSwaps(vector<int>&nums)
+	{
+	    vector<int> v=nums;
+	    sort(v.begin(),v.end());
+	    unordered_map<int,int> m;
+	    for(int i=0;i<v.size();i++){
+	        m[v[i]]=i;
+	    }
+	    int ans = 0;
+	    for(int i=0;i<nums.size();i++){
+	        if(m[nums[i]]!=i){
+	            swap(nums[i],nums[m[nums[i]]]);
+	            ans++;
+	            i--;
+	        }
+	    }
+	    return ans;
+	}
+};
+
+********************************************************************************************************************************
