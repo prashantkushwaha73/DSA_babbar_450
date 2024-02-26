@@ -27,3 +27,70 @@ long long int maxSum(int arr[], int n)
 }
 
 ***************************************************************************************************************************************
+**** Generate IP Addresses ( 26/02/24 ) ****
+
+class Solution{
+  public:
+    bool check(string s){
+        int v = stoi(s);
+        if(v<=255){
+            return true;
+        }
+        return false;
+    }
+    
+    bool check2(string s){
+        int v = stoi(s);
+        if(s.size()>=2){
+            if(s[0]=='0' && s[1]=='0'){
+                return false;
+            }
+        }
+        if(s[0]=='0' && v>0){
+            return false;
+        }
+        return true;
+    }
+    
+    void solve(string& s,int ind,int count,string str,vector<string>& ans){
+        if(ind>=s.size()){
+            if(count==4){
+                str.pop_back();
+                ans.push_back(str);
+                return;
+            }
+            else{
+                return;
+            }
+        }
+        if(count==4){
+            return;
+        }
+        string p;
+        int l=0;
+        for(int i=ind;i<s.size();i++){
+            l = l*10 + (s[i]-'0');
+            if(l>255){
+                break;
+            }
+            if(check2(s.substr(ind,1+i-ind))){
+                if(check(s.substr(ind,1+i-ind))){
+                p = s.substr(ind,1+i-ind)+".";
+                solve(s,i+1,count+1,str+p,ans);
+            }
+            else{
+                break;
+            }
+            }
+        }
+    }
+  
+    vector<string> genIp(string &s) {
+        vector<string> ans;
+        solve(s,0,0,"",ans);
+        return ans;
+    }
+
+};
+
+********************************************************************************************************************
